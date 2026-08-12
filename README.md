@@ -75,7 +75,7 @@ If you believe space-based edge computing, AI storage, and quantum architectures
 
 ---
 
-## 👤 Author & Contact
+## 👤 Author
 
 * Yağız Yağlı
   
