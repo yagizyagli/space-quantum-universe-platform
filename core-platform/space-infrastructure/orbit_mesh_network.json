@@ -1,0 +1,48 @@
+{
+  "constellation_name": "SQVP-Orbital-Mesh-Alpha",
+  "orbital_altitude_km": 550,
+  "orbit_type": "LEO (Low Earth Orbit)",
+  "inclination_degrees": 53.0,
+  "total_orbital_planes": 3,
+  "satellites_per_plane": 4,
+  "inter_satellite_links": {
+    "technology": "FSOC (Free-Space Optical Communication)",
+    "wavelength_nm": 1550,
+    "max_link_distance_km": 2500,
+    "data_throughput_gbps": 100
+  },
+  "satellites": [
+    {
+      "sat_id": "SQVP-SAT-01A",
+      "orbital_plane": 1,
+      "position_angle_deg": 0,
+      "laser_connected_to": ["SQVP-SAT-01B", "SQVP-SAT-02A"],
+      "onboard_quantum_emulation_enabled": true,
+      "storage_capacity_tb": 500
+    },
+    {
+      "sat_id": "SQVP-SAT-01B",
+      "orbital_plane": 1,
+      "position_angle_deg": 90,
+      "laser_connected_to": ["SQVP-SAT-01A", "SQVP-SAT-01C", "SQVP-SAT-02B"],
+      "onboard_quantum_emulation_enabled": true,
+      "storage_capacity_tb": 500
+    },
+    {
+      "sat_id": "SQVP-SAT-01C",
+      "orbital_plane": 1,
+      "position_angle_deg": 180,
+      "laser_connected_to": ["SQVP-SAT-01B", "SQVP-SAT-01D", "SQVP-SAT-02C"],
+      "onboard_quantum_emulation_enabled": true,
+      "storage_capacity_tb": 500
+    },
+    {
+      "sat_id": "SQVP-SAT-01D",
+      "orbital_plane": 1,
+      "position_angle_deg": 270,
+      "laser_connected_to": ["SQVP-SAT-01C", "SQVP-SAT-01A", "SQVP-SAT-02D"],
+      "onboard_quantum_emulation_enabled": true,
+      "storage_capacity_tb": 500
+    }
+  ]
+}
