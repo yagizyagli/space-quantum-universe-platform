@@ -6,184 +6,258 @@
     <title>SQVP - Space & Quantum Universe Platform</title>
     <style>
         :root {
-            --bg-color: #05050a;
-            --card-bg: #0f0f1f;
+            --bg-main: #0a0a16;
+            --bg-sidebar: #0f0f23;
+            --bg-navbar: rgba(15, 15, 35, 0.85);
+            --card-hover: #161633;
             --accent-blue: #00f2ff;
             --accent-purple: #7000ff;
             --text-main: #ffffff;
             --text-muted: #8fa0dd;
+            --border-glow: rgba(0, 242, 255, 0.15);
         }
 
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
+            background-color: var(--bg-main);
             color: var(--text-main);
-            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        /* Cyberpunk Space Background Gradient */
-        .stars-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 50%, #110e2e 0%, #05050a 100%);
-            z-index: -1;
-        }
-
-        /* Navigation Header */
-        header {
+        /* --- 1. GLOBAL NAVBAR (TOP) --- */
+        nav {
+            height: 65px;
+            background: var(--bg-navbar);
+            backdrop-filter: blur(12px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
-            border-bottom: 1px solid rgba(0, 242, 255, 0.1);
-            background: rgba(15, 15, 31, 0.7);
-            backdrop-filter: blur(10px);
+            padding: 0 24px;
+            border-bottom: 1px solid var(--border-glow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .menu-icon {
+            font-size: 22px;
+            cursor: pointer;
+            color: var(--text-muted);
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 2px;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
             background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            cursor: pointer;
         }
 
-        .orbit-badge {
-            background: rgba(0, 242, 255, 0.1);
-            border: 1px solid var(--accent-blue);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            text-transform: uppercase;
-            color: var(--accent-blue);
-            box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
-        }
-
-        /* Hybrid Google-Style Search Section */
-        .search-container {
-            max-width: 800px;
-            margin: 60px auto;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .search-container h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: var(--text-main);
-        }
-
-        .search-box-wrapper {
-            position: relative;
+        .nav-center {
+            flex: 0 1 600px;
             display: flex;
             align-items: center;
+            position: relative;
         }
 
-        .search-box {
+        .search-bar {
             width: 100%;
-            padding: 18px 25px;
-            border-radius: 30px;
+            padding: 12px 120px 12px 20px;
+            border-radius: 24px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(15, 15, 31, 0.8);
+            background: rgba(5, 5, 10, 0.8);
             color: var(--text-main);
-            font-size: 16px;
+            font-size: 15px;
             outline: none;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
-        .search-box:focus {
+        .search-bar:focus {
             border-color: var(--accent-blue);
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
         }
 
-        .quantum-search-btn {
+        .search-btn {
             position: absolute;
-            right: 10px;
+            right: 5px;
             background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
             border: none;
             color: white;
-            padding: 10px 25px;
+            padding: 8px 18px;
             border-radius: 20px;
             cursor: pointer;
             font-weight: bold;
-            transition: opacity 0.2s;
-        }
-
-        .quantum-search-btn:hover {
-            opacity: 0.9;
-        }
-
-        /* Live Satellite Feed Log */
-        .status-terminal {
-            max-width: 800px;
-            margin: 20px auto;
-            background: #020205;
-            border-left: 3px solid var(--accent-purple);
-            padding: 15px;
-            border-radius: 5px;
-            font-family: 'Courier New', Courier, monospace;
             font-size: 13px;
-            color: #51ff00;
-            text-align: left;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
         }
 
-        /* YouTube-Style Video Grid Section */
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
-        .section-title {
-            font-size: 22px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--accent-blue);
-            padding-left: 10px;
+        .orbit-indicator {
+            font-size: 12px;
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+            padding: 4px 12px;
+            border-radius: 15px;
+            background: rgba(0, 242, 255, 0.05);
+            font-weight: bold;
         }
 
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent-purple);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            cursor: pointer;
+            border: 1px solid var(--accent-blue);
+        }
+
+        /* --- MAIN WRAPPER (SIDEBAR + CONTENT) --- */
+        .app-container {
+            display: flex;
+            margin-top: 65px;
+            height: calc(100vh - 65px);
+            width: 100%;
+        }
+
+        /* --- 2. YOUTUBE SIDEBAR (LEFT) --- */
+        aside {
+            width: 240px;
+            background: var(--bg-sidebar);
+            border-right: 1px solid var(--border-glow);
+            padding: 15px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 24px;
+            font-size: 14px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .sidebar-item:hover, .sidebar-item.active {
+            background: rgba(0, 242, 255, 0.05);
+            color: var(--text-main);
+            border-left: 3px solid var(--accent-blue);
+        }
+
+        .sidebar-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.05);
+            margin: 10px 20px;
+        }
+
+        .sidebar-section-title {
+            padding: 5px 24px;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.3);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* --- 3. DYNAMIC CONTENT AREA (CENTER + VIDEO PLAYER) --- */
+        .content-layout {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+            background: var(--bg-main);
+        }
+
+        /* Video List Panel */
+        .main-feed {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        /* Tags Filter Bar */
+        .tags-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 13px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        .tag:hover, .tag.active {
+            background: var(--accent-blue);
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* YouTube Grid layout */
         .video-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 24px;
         }
 
         .video-card {
-            background: var(--card-bg);
+            background: rgba(15, 15, 35, 0.5);
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.2s, border-color 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.2s;
             cursor: pointer;
         }
 
         .video-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 242, 255, 0.3);
+            transform: translateY(-4px);
+            background: var(--card-hover);
+            border-color: rgba(0, 242, 255, 0.2);
         }
 
         .thumbnail {
             height: 160px;
-            background: linear-gradient(135deg, #161633, #0b0b14);
+            background: linear-gradient(135deg, #101026, #05050d);
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
+            font-size: 36px;
         }
 
-        .thumbnail::before {
-            content: "🛰️";
-            font-size: 40px;
-            opacity: 0.7;
-        }
-
-        .quantum-badge {
+        .badge {
             position: absolute;
             bottom: 10px;
             right: 10px;
@@ -191,18 +265,32 @@
             font-size: 10px;
             padding: 3px 8px;
             border-radius: 4px;
-            text-transform: uppercase;
             font-weight: bold;
+            text-transform: uppercase;
         }
 
         .video-info {
-            padding: 15px;
+            padding: 12px;
+            display: flex;
+            gap: 12px;
         }
 
-        .video-title {
-            font-size: 15px;
-            font-weight: bold;
-            margin: 0 0 8px 0;
+        .chan-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .video-details h3 {
+            font-size: 14px;
+            margin: 0 0 6px 0;
+            font-weight: 600;
             line-height: 1.4;
         }
 
@@ -210,99 +298,240 @@
             font-size: 12px;
             color: var(--text-muted);
         }
+
+        /* --- 4. REAL-TIME VIDEO PLAYER PANEL (RIGHT SPLIT) --- */
+        .player-side-panel {
+            width: 450px;
+            background: var(--bg-sidebar);
+            border-left: 1px solid var(--border-glow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .player-header {
+            padding: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .player-header h2 {
+            font-size: 16px;
+            margin: 0;
+            color: var(--accent-blue);
+        }
+
+        .mock-screen {
+            height: 240px;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            border-bottom: 1px solid var(--border-glow);
+        }
+
+        .play-mesh-icon {
+            font-size: 48px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 20px var(--accent-blue); }
+            100% { transform: scale(1); opacity: 0.7; }
+        }
+
+        .telemetry-console {
+            flex: 1;
+            background: #030308;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12px;
+            color: #51ff00;
+            overflow-y: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .player-info-box {
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+        }       
+
+        .player-video-title {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="stars-bg"></div>
+    <nav>
+        <div class="nav-left">
+            <div class="menu-icon">☰</div>
+            <div class="logo">SQVP.IO</div>
+        </div>
+        
+        <div class="nav-center">
+            <input type="text" class="search-bar" id="search-input" placeholder="Search the Quantum Network...">
+            <button class="search-btn" onclick="runGroverSearch()">Grover Search</button>
+        </div>
 
-    <header>
-        <div class="logo">SQVP.IO</div>
-        <div class="orbit-badge" id="orbital-status">Orbital Mesh: Connected</div>
-    </header>
+        <div class="nav-right">
+            <div class="orbit-indicator">LEO MESH: ACTIVE</div>
+            <div class="profile-avatar">U</div>
+        </div>
+    </nav>
 
-    <!-- Google-Style Engine -->
-    <div class="search-container">
-        <h1>Search the Quantum Mesh</h1>
-        <div class="search-box-wrapper">
-            <input type="text" class="search-box" id="search-input" placeholder="Search un-censored space videos & quantum data...">
-            <button class="quantum-search-btn" onclick="triggerQuantumSearch()">Grover Search</button>
+    <div class="app-container">
+        <aside>
+            <div class="sidebar-item active">🌐 Home Feed</div>
+            <div class="sidebar-item">🚀 Space Nodes</div>
+            <div class="sidebar-item">⚛️ Quantum Channels</div>
+            <div class="sidebar-item">📈 Live Telemetry</div>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-section-title">Subscriptions</div>
+            <div class="sidebar-item">🪐 NASA Deep Space</div>
+            <div class="sidebar-item">🧬 Quantum Labs</div>
+            <div class="sidebar-item">🛰️ Orbital Edge</div>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-item">⚙️ Core Settings</div>
+        </aside>
+
+        <div class="content-layout">
+            <div class="main-feed">
+                <div class="tags-bar">
+                    <div class="tag active">All Universe</div>
+                    <div class="tag">Quantum Cryptography</div>
+                    <div class="tag">LEO Satellites</div>
+                    <div class="tag">Astrophysics</div>
+                    <div class="tag">Laser Communications</div>
+                </div>
+
+                <div class="video-grid">
+                    <div class="video-card" onclick="loadVideo('Quantum Teleportation Protocols', 'Quantum Labs', '⚛️')">
+                        <div class="thumbnail">⚛️<span class="badge">QKD Protected</span></div>
+                        <div class="video-info">
+                            <div class="chan-avatar">QL</div>
+                            <div class="video-details">
+                                <h3 class="video-title">Quantum Teleportation Mechanics & Lab Demonstrations</h3>
+                                <div class="video-meta">Quantum Labs • 12K views • 2 hours ago</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="video-card" onclick="loadVideo('James Webb Deep Field Matrix', 'NASA Deep Space', '🪐')">
+                        <div class="thumbnail" style="background: linear-gradient(135deg, #1b0c30, #05050c)">🪐<span class="badge">Laser Link</span></div>
+                        <div class="video-info">
+                            <div class="chan-avatar">NS</div>
+                            <div class="video-details">
+                                <h3 class="video-title">James Webb Space Telescope: New Deep Field Raw Telemetry</h3>
+                                <div class="video-meta">NASA Deep Space • 45K views • 1 day ago</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="video-card" onclick="loadVideo('Shor Algorithm Satellite Optimization', 'Quantum Core', '💻')">
+                        <div class="thumbnail">💻<span class="badge">QPU Native</span></div>
+                        <div class="video-info">
+                            <div class="chan-avatar">QC</div>
+                            <div class="video-details">
+                                <h3 class="video-title">Shor's Algorithm Optimization for Planetary Encryptos</h3>
+                                <div class="video-meta">Quantum Core • 8K views • 3 days ago</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="video-card" onclick="loadVideo('6U CubeSat Micro-Thruster Run', 'Orbital Edge', '🛰️')">
+                        <div class="thumbnail" style="background: linear-gradient(135deg, #07192b, #05050c)">🛰️<span class="badge">Orbital SSD</span></div>
+                        <div class="video-info">
+                            <div class="chan-avatar">OE</div>
+                            <div class="video-details">
+                                <h3 class="video-title">6U CubeSat Electrospray Micro-Thruster Test in Vacuum</h3>
+                                <div class="video-meta">Orbital Edge • 22K views • 1 week ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-side-panel">
+                <div class="player-header">
+                    <h2>Target Space Stream</h2>
+                    <span style="font-size: 11px; opacity: 0.5;">Secure Downlink Terminal</span>
+                </div>
+                
+                <div class="mock-screen" id="player-screen">
+                    <div class="play-mesh-icon" id="player-icon">📡</div>
+                    <div style="margin-top: 10px; font-size: 13px; color: var(--accent-blue);" id="player-status-text">Select a video to stream from orbit</div>
+                </div>
+
+                <div class="player-info-box">
+                    <div class="player-video-title" id="player-title">No Asset Loaded</div>
+                    <div class="video-meta" id="player-channel">Awaiting secure channel auth...</div>
+                </div>
+
+                <div class="telemetry-console" id="console-output">
+                    [SYSTEM] Ground Node active. Monitoring 3 dynamic LEO planes.<br>
+                    [SYSTEM] Ready to execute Grover's Search database parsing sequences...
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Live Telemetry Simulator Output -->
-    <div class="status-terminal" id="terminal-log">
-        [SYSTEM] SQVP Terrestrial Terminal Ready. Space-Based Edge Nodes holding 500TB cache.
-    </div>
+    <script>
+        const consoleOut = document.getElementById('console-output');
 
-    <!-- YouTube-Style Video Grid -->
-    <main class="main-content">
-        <h2 class="section-title">Trending from Low Earth Orbit</h2>
-        <div class="video-grid">
-            
-            <div class="video-card" onclick="playVideo('Quantum Teleportation Mechanics')">
-                <div class="thumbnail"><span class="quantum-badge">QKD Secured</span></div>
-                <div class="video-info">
-                    <h3 class="video-title">Quantum Teleportation Mechanics & Lab Demonstrations</h3>
-                    <div class="video-meta">Channel: Quantum Core • 12K views • 2 hours ago</div>
-                </div>
-            </div>
-
-            <div class="video-card" onclick="playVideo('James Webb Deep Field Analysis')">
-                <div class="thumbnail" style="background: linear-gradient(135deg, #25123e, #05050a);"><span class="quantum-badge">Laser Cast</span></div>
-                <div class="video-info">
-                    <h3 class="video-title">James Webb Space Telescope: New Deep Field Raw Telemetry</h3>
-                    <div class="video-meta">Channel: Space Infra • 45K views • 1 day ago</div>
-                </div>
-            </div>
-
-            <div class="video-card" onclick="playVideo('Shor Algorithm Optimization')">
-                <div class="thumbnail"><span class="quantum-badge">QPU Native</span></div>
-                <div class="video-info">
-                    <h3 class="video-title">Shor's Algorithm Optimization for Planetary Encryptos</h3>
-                    <div class="video-meta">Channel: Quantum Core • 8K views • 3 days ago</div>
-                </div>
-            </div>
-
-            <div class="video-card" onclick="playVideo('CubeSat Propulsion Test')">
-                <div class="thumbnail" style="background: linear-gradient(135deg, #0e2233, #05050a);"><span class="quantum-badge">Downlinked</span></div>
-                <div class="video-info">
-                    <h3 class="video-title">6U CubeSat Electrospray Micro-Thruster Test in Vacuum</h3>
-                    <div class="video-meta">Channel: Orbital Blueprints • 22K views • 1 week ago</div>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-     <script>
-        // Frontend Simulation of our backend Quantum Grover & Space Link
-        function triggerQuantumSearch() {
+        function runGroverSearch() {
             const query = document.getElementById('search-input').value;
-            const log = document.getElementById('terminal-log');
-            
-            if(!query) {
-                alert("Please enter a space/quantum search query.");
-                return;
-            }
+            if(!query) return;
 
-            log.innerHTML = `[QUANTUM] Initializing Grover's Search Engine for query: "${query}"...<br>`;
+            consoleOut.innerHTML = `[GROVER ENGINE] Parsing query string: "${query}"...<br>`;
             
             setTimeout(() => {
-                log.innerHTML += `[QUANTUM] Qubits injected into equal superposition. Compiling oracle matrix...<br>`;
-            }, 800);
+                consoleOut.innerHTML += `[QUANTUM] Deploying Grover's Oracle matrix. Initializing state superposition...<br>`;
+                consoleOut.scrollTop = consoleOut.scrollHeight;
+            }, 600);
 
             setTimeout(() => {
-                log.innerHTML += `[SPACE] Scanning LEO Satellite Mesh. Resolving optimal node...<br>`;
-            }, 1600);
+                consoleOut.innerHTML += `[ORBITAL] Quantum data index identified across LEO constellation vectors.<br>`;
+                consoleOut.scrollTop = consoleOut.scrollHeight;
+            }, 1400);
 
             setTimeout(() => {
-                log.innerHTML += `[SUCCESS] Secure Link via SQVP-SAT-01A (Latency: 1.84ms). Cryptographic target key verified. Rendering results!`;
-            }, 2400);
+                consoleOut.innerHTML += `[SUCCESS] 1 optimal metadata address found. Syncing downlink scheduler. Try clicking the videos!`;
+                consoleOut.scrollTop = consoleOut.scrollHeight;
+            }, 2200);
         }
 
-        function playVideo(title) {
-            const log = document.getElementById('terminal-log');
-            log.innerHTML = `[STREAM] Initializing un-hackable QKD downlink for: "${title}". Streaming directly from orbital hardware...`;
+        function loadVideo(title, channel, icon) {
+            document.getElementById('player-title').innerText = title;
+            document.getElementById('player-channel').innerText = `Channel: ${channel} • Secured via SQVP Link`;
+            document.getElementById('player-icon').innerText = icon;
+            document.getElementById('player-status-text').innerText = "Streaming Live Payload Data...";
+
+            consoleOut.innerHTML = `[QKD AUTH] Requesting secure session initialization for: "${title}"...<br>`;
+            
+            setTimeout(() => {
+                consoleOut.innerHTML += `[QUANTUM CHANNEL] BB84 Key exchange complete. Polarization basis matched.<br>`;
+                consoleOut.scrollTop = consoleOut.scrollHeight;
+            }, 700);
+
+            setTimeout(() => {
+                consoleOut.innerHTML += `[SPACE DOWNLINK] Connecting to SQVP-SAT-01A. Latency calculated: 1.84ms.<br>`;
+                consoleOut.scrollTop = consoleOut.scrollHeight;
+            }, 1500);
+
+            setTimeout(() => {
+                consoleOut.innerHTML += `[STREAMING] Multicast video stream decrypted on the fly. Onboard FPGA storage delivering cache lines.`;
+                consoleOut.scrollTop = consoleOut.scrollHeight;
+            }, 2300);
         }
     </script>
+</body>
+</html>
