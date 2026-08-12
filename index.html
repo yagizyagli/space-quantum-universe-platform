@@ -28,7 +28,7 @@
             overflow: hidden;
         }
 
-        /* --- 1. GLOBAL NAVBAR (TOP) --- */
+        /* --- NAVBAR --- */
         nav {
             height: 65px;
             background: var(--bg-navbar);
@@ -133,7 +133,7 @@
             border: 1px solid var(--accent-blue);
         }
 
-        /* --- MAIN WRAPPER (SIDEBAR + CONTENT) --- */
+        /* --- APP WRAPPER --- */
         .app-container {
             display: flex;
             margin-top: 65px;
@@ -141,7 +141,7 @@
             width: 100%;
         }
 
-        /* --- 2. YOUTUBE SIDEBAR (LEFT) --- */
+        /* --- SIDEBAR --- */
         aside {
             width: 240px;
             background: var(--bg-sidebar);
@@ -185,7 +185,7 @@
             letter-spacing: 1px;
         }
 
-        /* --- 3. DYNAMIC CONTENT AREA (CENTER + VIDEO PLAYER) --- */
+        /* --- MAIN CONTENT & SPLIT PLAYER --- */
         .content-layout {
             flex: 1;
             display: flex;
@@ -193,14 +193,12 @@
             background: var(--bg-main);
         }
 
-        /* Video List Panel */
         .main-feed {
             flex: 1;
             padding: 24px;
             overflow-y: auto;
         }
 
-        /* Tags Filter Bar */
         .tags-bar {
             display: flex;
             gap: 10px;
@@ -225,7 +223,6 @@
             font-weight: bold;
         }
 
-        /* YouTube Grid layout */
         .video-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -299,7 +296,7 @@
             color: var(--text-muted);
         }
 
-        /* --- 4. REAL-TIME VIDEO PLAYER PANEL (RIGHT SPLIT) --- */
+        /* --- PLAYER SIDE PANEL --- */
         .player-side-panel {
             width: 450px;
             background: var(--bg-sidebar);
@@ -342,7 +339,7 @@
 
         @keyframes pulse {
             0% { transform: scale(1); opacity: 0.7; }
-            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 20px var(--accent-blue); }
+            50% { transform: scale(1.1); opacity: 1; }
             100% { transform: scale(1); opacity: 0.7; }
         }
 
@@ -360,7 +357,7 @@
         .player-info-box {
             padding: 16px;
             background: rgba(255, 255, 255, 0.02);
-        }       
+        }
 
         .player-video-title {
             font-size: 15px;
@@ -419,7 +416,7 @@
                         <div class="video-info">
                             <div class="chan-avatar">QL</div>
                             <div class="video-details">
-                                <h3 class="video-title">Quantum Teleportation Mechanics & Lab Demonstrations</h3>
+                                <h3>Quantum Teleportation Mechanics & Lab Demonstrations</h3>
                                 <div class="video-meta">Quantum Labs • 12K views • 2 hours ago</div>
                             </div>
                         </div>
@@ -430,7 +427,7 @@
                         <div class="video-info">
                             <div class="chan-avatar">NS</div>
                             <div class="video-details">
-                                <h3 class="video-title">James Webb Space Telescope: New Deep Field Raw Telemetry</h3>
+                                <h3>James Webb Space Telescope: New Deep Field Raw Telemetry</h3>
                                 <div class="video-meta">NASA Deep Space • 45K views • 1 day ago</div>
                             </div>
                         </div>
@@ -441,18 +438,18 @@
                         <div class="video-info">
                             <div class="chan-avatar">QC</div>
                             <div class="video-details">
-                                <h3 class="video-title">Shor's Algorithm Optimization for Planetary Encryptos</h3>
+                                <h3>Shor's Algorithm Optimization for Planetary Encryptos</h3>
                                 <div class="video-meta">Quantum Core • 8K views • 3 days ago</div>
                             </div>
                         </div>
                     </div>
 
                     <div class="video-card" onclick="loadVideo('6U CubeSat Micro-Thruster Run', 'Orbital Edge', '🛰️')">
-                        <div class="thumbnail" style="background: linear-gradient(135deg, #07192b, #05050c)">🛰️<span class="badge">Orbital SSD</span></div>
+                        <div class="thumbnail" style="background: #07192b">🛰️<span class="badge">Orbital SSD</span></div>
                         <div class="video-info">
                             <div class="chan-avatar">OE</div>
                             <div class="video-details">
-                                <h3 class="video-title">6U CubeSat Electrospray Micro-Thruster Test in Vacuum</h3>
+                                <h3>6U CubeSat Electrospray Micro-Thruster Test in Vacuum</h3>
                                 <div class="video-meta">Orbital Edge • 22K views • 1 week ago</div>
                             </div>
                         </div>
@@ -534,4 +531,4 @@
         }
     </script>
 </body>
-</html>
+
