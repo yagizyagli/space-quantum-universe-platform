@@ -3,7 +3,8 @@
 
 SQVP is a next-generation, decentralized video streaming and data processing ecosystem powered by **Space-Based Edge Computing**, **AI-Driven Orbital Storage**, and **Quantum-Native Algorithms**. By migrating global data indexing and cryptographic infrastructure to Low Earth Orbit (LEO) satellite constellations, SQVP establishes an un-hackable, zero-latency, and censorship-resistant alternative to legacy data platforms like Google and YouTube.
 
-🚀 **[LIVE WEB INTERFACE DEMO]** Your GitHub Pages url goes here! (e.g., https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/)
+🚀 **[LIVE WEB INTERFACE DEMO]** Your GitHub Pages url goes here! (e.g., :https://yagizyagli.github.io/space-quantum-universe-platform/
+/[YOUR_REPO_NAME/](https://github.com/yagizyagli/space-quantum-universe-platform))
 
 ---
 
@@ -76,8 +77,6 @@ If you believe space-based edge computing, AI storage, and quantum architectures
 
 ## 👤 Author & Contact
 
-* Yağız Yağlı (https://github.com/yagizyagli) 
-* Repo:https://github.com/yagizyagli/space-quantum-universe-platform
-* Live Demo:https://yagizyagli.github.io/space-quantum-universe-platform/
+* Yağız Yağlı
   
 
