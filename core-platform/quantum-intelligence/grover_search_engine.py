@@ -4,7 +4,6 @@ Module: Quantum Intelligence Layer
 Description: Enterprise-grade Grover's Search Engine simulation for high-speed video metadata indexing.
 Architecture: Optimized for deployment on space-hardened satellite QPU emulators.
 Version: 1.0.0
-Author: Core Engineering Team
 """
 
 import math
