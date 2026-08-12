@@ -275,7 +275,7 @@
         </div>
     </main>
 
-    <script>
+     <script>
         // Frontend Simulation of our backend Quantum Grover & Space Link
         function triggerQuantumSearch() {
             const query = document.getElementById('search-input').value;
@@ -297,3 +297,12 @@
             }, 1600);
 
             setTimeout(() => {
+                log.innerHTML += `[SUCCESS] Secure Link via SQVP-SAT-01A (Latency: 1.84ms). Cryptographic target key verified. Rendering results!`;
+            }, 2400);
+        }
+
+        function playVideo(title) {
+            const log = document.getElementById('terminal-log');
+            log.innerHTML = `[STREAM] Initializing un-hackable QKD downlink for: "${title}". Streaming directly from orbital hardware...`;
+        }
+    </script>
