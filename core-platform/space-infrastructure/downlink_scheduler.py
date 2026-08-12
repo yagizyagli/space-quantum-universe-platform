@@ -4,7 +4,6 @@ Module: Space Infrastructure Layer
 Description: Orbital routing and downlink scheduling simulator for multi-gigabit video data transit.
 Architecture: Resolves the optimal satellite node to ground-station connection based on latency and visibility.
 Version: 1.0.0
-Author: Core Engineering Team
 """
 
 import json
