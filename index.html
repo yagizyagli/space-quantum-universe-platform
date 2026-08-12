@@ -411,7 +411,7 @@
                 </div>
 
                 <div class="video-grid">
-                    <div class="video-card" onclick="loadVideo('Quantum Teleportation Protocols', 'Quantum Labs', '⚛️')">
+                    <div class="video-card" onclick="loadVideo('Quantum Teleportation Protocols', 'Quantum Labs', '⚛️', 150.0, 65000)">
                         <div class="thumbnail">⚛️<span class="badge">QKD Protected</span></div>
                         <div class="video-info">
                             <div class="chan-avatar">QL</div>
@@ -422,7 +422,7 @@
                         </div>
                     </div>
 
-                    <div class="video-card" onclick="loadVideo('James Webb Deep Field Matrix', 'NASA Deep Space', '🪐')">
+                    <div class="video-card" onclick="loadVideo('James Webb Deep Field Matrix', 'NASA Deep Space', '🪐', 450.0, 32000)">
                         <div class="thumbnail" style="background: linear-gradient(135deg, #1b0c30, #05050c)">🪐<span class="badge">Laser Link</span></div>
                         <div class="video-info">
                             <div class="chan-avatar">NS</div>
@@ -433,7 +433,7 @@
                         </div>
                     </div>
 
-                    <div class="video-card" onclick="loadVideo('Shor Algorithm Satellite Optimization', 'Quantum Core', '💻')">
+                    <div class="video-card" onclick="loadVideo('Shor Algorithm Satellite Optimization', 'Quantum Core', '💻', 180.0, 15000)">
                         <div class="thumbnail">💻<span class="badge">QPU Native</span></div>
                         <div class="video-info">
                             <div class="chan-avatar">QC</div>
@@ -444,7 +444,7 @@
                         </div>
                     </div>
 
-                    <div class="video-card" onclick="loadVideo('6U CubeSat Micro-Thruster Run', 'Orbital Edge', '🛰️')">
+                    <div class="video-card" onclick="loadVideo('6U CubeSat Micro-Thruster Run', 'Orbital Edge', '🛰️', 1200.0, 450)">
                         <div class="thumbnail" style="background: #07192b">🛰️<span class="badge">Orbital SSD</span></div>
                         <div class="video-info">
                             <div class="chan-avatar">OE</div>
@@ -506,29 +506,52 @@
             }, 2200);
         }
 
-        function loadVideo(title, channel, icon) {
+        function loadVideo(title, channel, icon, fileSizeGb, views) {
             document.getElementById('player-title').innerText = title;
             document.getElementById('player-channel').innerText = `Channel: ${channel} • Secured via SQVP Link`;
             document.getElementById('player-icon').innerText = icon;
             document.getElementById('player-status-text').innerText = "Streaming Live Payload Data...";
 
-            consoleOut.innerHTML = `[QKD AUTH] Requesting secure session initialization for: "${title}"...<br>`;
+            // AI NLP classification inference mirror
+            let domain = "general";
+            let titleLower = title.toLowerCase();
+            if (titleLower.includes("quantum") || titleLower.includes("shor")) domain = "quantum";
+            else if (titleLower.includes("space") || titleLower.includes("webb")) domain = "astrophysics";
+            else if (titleLower.includes("thruster") || titleLower.includes("sat")) domain = "telemetry";
+
+            // AI Compression decision matrix mirror
+            let codec = "VVC-DeepSpace-Squeeze";
+            let ratio = "12:1";
+            let strategy = "ELIGIBLE_FOR_TERRESTRIAL_PURGE";
+
+            if (views > 50000 && (domain === "quantum" || domain === "astrophysics")) {
+                codec = "AV1-SpaceNative";
+                ratio = "1:1 (RAW)";
+                strategy = "PINNED_IN_ORBIT";
+            } else if (views > 10000) {
+                codec = "HEVC-Orbital-Optimized";
+                ratio = "4:1";
+                strategy = "STANDARD_CACHE";
+            }
+
+            consoleOut.innerHTML = `[AI-ONBOARD] Ingesting telemetry data lines for taxonomy classification...<br>`;
             
             setTimeout(() => {
-                consoleOut.innerHTML += `[QUANTUM CHANNEL] BB84 Key exchange complete. Polarization basis matched.<br>`;
+                consoleOut.innerHTML += `[AI INFERENCE] NLP classification matched domain: "${domain.toUpperCase()}"<br>`;
                 consoleOut.scrollTop = consoleOut.scrollHeight;
-            }, 700);
+            }, 600);
 
             setTimeout(() => {
-                consoleOut.innerHTML += `[SPACE DOWNLINK] Connecting to SQVP-SAT-01A. Latency calculated: 1.84ms.<br>`;
+                consoleOut.innerHTML += `[AI DECISION] Sizing: ${fileSizeGb} GB. Caching rule: [${strategy}]. Codec assigned: [${codec}] (Ratio: ${ratio})<br>`;
                 consoleOut.scrollTop = consoleOut.scrollHeight;
-            }, 1500);
+            }, 1300);
 
             setTimeout(() => {
-                consoleOut.innerHTML += `[STREAMING] Multicast video stream decrypted on the fly. Onboard FPGA storage delivering cache lines.`;
+                consoleOut.innerHTML += `[SPACE LINK] BB84 QKD authorized. Streaming multicast payload directly from satellite SSD blocks.`;
                 consoleOut.scrollTop = consoleOut.scrollHeight;
-            }, 2300);
+            }, 2000);
         }
     </script>
 </body>
+</html>
 
