@@ -4,7 +4,6 @@ Module: Quantum Intelligence / Security Layer
 Description: BB84 Quantum Key Distribution (QKD) simulator for securing satellite-to-ground downlinks.
 Architecture: Simulates photon polarization states between orbital payloads and terrestrial optical ground stations.
 Version: 1.0.0
-Author: Core Engineering Team
 """
 
 import random
