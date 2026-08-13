@@ -468,7 +468,7 @@
 
         <div class="nav-right">
             <div class="orbit-indicator">LEO MESH: ACTIVE</div>
-            <div class="profile-avatar">U</div>
+            <div class="profile-avatar" onclick="triggerUserAccount()">U</div>
         </div>
     </nav>
 
@@ -578,7 +578,7 @@
         </div>
     </div>
 
-       <!-- FULL INTERACTIVE FRONTEND LOGIC -->
+      <!-- FULL INTERACTIVE FRONTEND LOGIC -->
     <script>
         const consoleOut = document.getElementById('console-output');
         const sidebar = document.getElementById('main-sidebar');
@@ -659,8 +659,25 @@
             appendLog('[SYSTEM] Restoring original orbital home feed streams.');
         }
 
+        // FIXED: Interactive Core Settings Configuration Simulator
         function handleSettings() {
-            appendLog('[SECURITY] Cryptographic configuration locked. Superuser root access required.');
+            consoleOut.innerHTML = '[SECURITY] Accessing Core Configuration Matrix...<br>';
+            setTimeout(() => appendLog('[WARN] Layer-2 cryptographic override detected. System parameters locked.'), 500);
+            setTimeout(() => appendLog('[ORBITAL] QPU Frequency: 4.8 GHz | Thermal Skin: Stable at -34°C'), 1100);
+            setTimeout(() => appendLog('[SUCCESS] Orbital configuration optimized. System operating at peak performance.'), 1800);
+        }
+
+        // FIXED: Interactive User Account/Profile Telemetry Simulator
+        function triggerUserAccount() {
+            consoleOut.innerHTML = '[USER PROFILE] Parsing active terrestrial session handshake tokens...<br>';
+            
+            // Simulating dynamic session metadata for the investor show
+            const mockIp = "192.168.84." + Math.floor(Math.random() * 254 + 1);
+            
+            setTimeout(() => appendLog(`[IDENTITY] Verified Superuser: "Root_Architect_Alpha"`), 500);
+            setTimeout(() => appendLog(`[NETWORK] Terminal Terrestrial IP Address: ${mockIp}`), 1100);
+            setTimeout(() => appendLog('[LINK STATUS] Quantum Auth Status: VALID | Station: Ground_Node_Istanbul_Alpha'), 1700);
+            setTimeout(() => appendLog('[SUCCESS] Secure orbital session verified. No data package leaks detected across atmospheric downlinks.'), 2300);
         }
 
         // AI-Driven Satellite Storage cache assignment simulation (Mirroring python core database logic)
@@ -674,7 +691,7 @@
             let titleLower = title.toLowerCase();
             if (titleLower.includes('quantum') || titleLower.includes('shor')) domain = 'quantum';
             else if (titleLower.includes('space') || titleLower.includes('webb')) domain = 'astrophysics';
-            else if (titleLower.includes('thruster') || titleLower.includes('sat')) domain = 'telemetry';
+            else if (titleLower.includes('thruster') || titleLower.includes('sat')) domain = "telemetry";
 
             let codec = 'VVC-DeepSpace-Squeeze';
             let ratio = '12:1';
@@ -697,5 +714,6 @@
             setTimeout(() => appendLog('[SPACE LINK] Optical cross-link active (BB84 QKD authorized). Decrypting payload stream from satellite SSD at 1.84ms latency.'), 1800);
         }
     </script>
+
 
 
