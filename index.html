@@ -8,7 +8,7 @@
         :root {
             --bg-main: #0a0a16;
             --bg-sidebar: #0f0f23;
-            --bg-navbar: rgba(15, 15, 35, 0.85);
+            --bg-navbar: rgba(15, 15, 35, 0.9);
             --card-hover: #161633;
             --accent-blue: #00f2ff;
             --accent-purple: #7000ff;
@@ -28,7 +28,7 @@
             overflow: hidden;
         }
 
-        /* --- NAVBAR --- */
+        /* --- NAVBAR (RESPONSIVE) --- */
         nav {
             height: 65px;
             background: var(--bg-navbar);
@@ -36,7 +36,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 24px;
+            padding: 0 20px;
             border-bottom: 1px solid var(--border-glow);
             position: fixed;
             top: 0;
@@ -48,17 +48,19 @@
         .nav-left {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .menu-icon {
-            font-size: 22px;
+            font-size: 24px;
             cursor: pointer;
-            color: var(--text-muted);
+            color: var(--accent-blue);
+            padding: 5px;
+            user-select: none;
         }
 
         .logo {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
             letter-spacing: 1.5px;
             background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple));
@@ -68,27 +70,28 @@
         }
 
         .nav-center {
-            flex: 0 1 600px;
+            flex: 0 1 500px;
             display: flex;
             align-items: center;
             position: relative;
+            margin: 0 10px;
         }
 
         .search-bar {
             width: 100%;
-            padding: 12px 120px 12px 20px;
+            padding: 10px 110px 10px 15px;
             border-radius: 24px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             background: rgba(5, 5, 10, 0.8);
             color: var(--text-main);
-            font-size: 15px;
+            font-size: 14px;
             outline: none;
             transition: all 0.3s ease;
         }
 
         .search-bar:focus {
             border-color: var(--accent-blue);
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+            box-shadow: 0 0 12px rgba(0, 242, 255, 0.3);
         }
 
         .search-btn {
@@ -97,32 +100,33 @@
             background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
             border: none;
             color: white;
-            padding: 8px 18px;
+            padding: 6px 14px;
             border-radius: 20px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .orbit-indicator {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--accent-blue);
             border: 1px solid var(--accent-blue);
-            padding: 4px 12px;
+            padding: 4px 10px;
             border-radius: 15px;
             background: rgba(0, 242, 255, 0.05);
             font-weight: bold;
+            white-space: nowrap;
         }
 
         .profile-avatar {
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
             background: var(--accent-purple);
             display: flex;
@@ -131,17 +135,19 @@
             font-weight: bold;
             cursor: pointer;
             border: 1px solid var(--accent-blue);
+            flex-shrink: 0;
         }
 
-        /* --- APP WRAPPER --- */
+        /* --- APP CONTENT WRAPPER --- */
         .app-container {
             display: flex;
             margin-top: 65px;
             height: calc(100vh - 65px);
             width: 100%;
+            position: relative;
         }
 
-        /* --- SIDEBAR --- */
+        /* --- SIDEBAR (RESPONSIVE TOGGLE) --- */
         aside {
             width: 240px;
             background: var(--bg-sidebar);
@@ -149,8 +155,17 @@
             padding: 15px 0;
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 2px;
             flex-shrink: 0;
+            transition: transform 0.3s ease, width 0.3s ease;
+            z-index: 999;
+        }
+
+        aside.collapsed {
+            transform: translateX(-240px);
+            width: 0;
+            position: absolute;
+            height: 100%;
         }
 
         .sidebar-item {
@@ -178,33 +193,44 @@
 
         .sidebar-section-title {
             padding: 5px 24px;
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
             color: rgba(255, 255, 255, 0.3);
             font-weight: bold;
             letter-spacing: 1px;
         }
 
-        /* --- MAIN CONTENT & SPLIT PLAYER --- */
+        /* --- DYNAMIC LAYOUT --- */
         .content-layout {
             flex: 1;
             display: flex;
+            flex-direction: row;
             overflow: hidden;
             background: var(--bg-main);
+            transition: all 0.3s ease;
         }
 
         .main-feed {
             flex: 1;
-            padding: 24px;
+            padding: 20px;
             overflow-y: auto;
         }
 
+        /* Tags Filter Bar */
         .tags-bar {
             display: flex;
             gap: 10px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             overflow-x: auto;
-            padding-bottom: 5px;
+            padding-bottom: 8px;
+        }
+
+        .tags-bar::-webkit-scrollbar {
+            height: 4px;
+        }
+        .tags-bar::-webkit-scrollbar-thumb {
+            background: rgba(0, 242, 255, 0.2);
+            border-radius: 4px;
         }
 
         .tag {
@@ -214,19 +240,21 @@
             font-size: 13px;
             cursor: pointer;
             white-space: nowrap;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            border: 1px solid transparent;
         }
 
         .tag:hover, .tag.active {
-            background: var(--accent-blue);
-            color: #000;
-            font-weight: bold;
+            background: rgba(0, 242, 255, 0.1);
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
         }
 
+        /* Responsive Video Grid */
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
         }
 
         .video-card {
@@ -245,25 +273,26 @@
         }
 
         .thumbnail {
-            height: 160px;
+            height: 150px;
             background: linear-gradient(135deg, #101026, #05050d);
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
-            font-size: 36px;
+            font-size: 32px;
         }
 
         .badge {
             position: absolute;
-            bottom: 10px;
-            right: 10px;
+            bottom: 8px;
+            right: 8px;
             background: var(--accent-purple);
-            font-size: 10px;
-            padding: 3px 8px;
+            font-size: 9px;
+            padding: 3px 6px;
             border-radius: 4px;
             font-weight: bold;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .video-info {
@@ -276,39 +305,50 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 14px;
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--accent-blue);
             flex-shrink: 0;
+            border: 1px solid rgba(0, 242, 255, 0.1);
+        }
+
+        .video-details {
+            overflow: hidden;
         }
 
         .video-details h3 {
-            font-size: 14px;
+            font-size: 13px;
             margin: 0 0 6px 0;
             font-weight: 600;
             line-height: 1.4;
+            white-space: nowrap;
+             Countess-overflow: ellipsis;
+            overflow: hidden;
         }
 
         .video-meta {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-muted);
         }
 
-        /* --- PLAYER SIDE PANEL --- */
+        /* --- RESPONSIVE PLAYER SIDE PANEL --- */
         .player-side-panel {
-            width: 450px;
+            width: 380px;
             background: var(--bg-sidebar);
             border-left: 1px solid var(--border-glow);
             display: flex;
             flex-direction: column;
             overflow: hidden;
             transition: all 0.3s ease;
+            flex-shrink: 0;
         }
 
         .player-header {
-            padding: 16px;
+            padding: 14px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             justify-content: space-between;
@@ -316,13 +356,14 @@
         }
 
         .player-header h2 {
-            font-size: 16px;
+            font-size: 14px;
             margin: 0;
             color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-
-        .mock-screen {
-            height: 240px;
+                .mock-screen {
+            height: 200px;
             background: #000;
             display: flex;
             flex-direction: column;
@@ -333,45 +374,91 @@
         }
 
         .play-mesh-icon {
-            font-size: 48px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.7; }
-            50% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.7; }
+            font-size: 42px;
+            margin-bottom: 8px;
         }
 
         .telemetry-console {
             flex: 1;
             background: #030308;
-            padding: 15px;
+            padding: 12px;
             font-family: 'Courier New', Courier, monospace;
-            font-size: 12px;
+            font-size: 11px;
             color: #51ff00;
             overflow-y: auto;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .player-info-box {
-            padding: 16px;
+            padding: 14px;
             background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .player-video-title {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+
+        /* --- MEDIA QUERIES (FULL RESPONSIVENESS) --- */
+        @media (max-width: 992px) {
+            .app-container {
+                flex-direction: column;
+                overflow-y: auto;
+                height: auto;
+            }
+            .content-layout {
+                flex-direction: column;
+                height: auto;
+                overflow: visible;
+            }
+            aside {
+                width: 100%;
+                position: relative;
+                transform: none !important;
+                height: auto;
+            }
+            aside.collapsed {
+                display: none;
+            }
+            .player-side-panel {
+                width: 100%;
+                height: 450px;
+                border-left: none;
+                border-top: 1px solid var(--border-glow);
+            }
+            .main-feed {
+                overflow-y: visible;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-right .orbit-indicator {
+                display: none;
+            }
+            .search-bar {
+                padding-right: 40px;
+            }
+            .search-btn {
+                padding: 6px 10px;
+                font-size: 11px;
+            }
+            .main-feed {
+                padding: 12px;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- TOP NAVBAR -->
     <nav>
         <div class="nav-left">
-            <div class="menu-icon">☰</div>
-            <div class="logo">SQVP.IO</div>
+            <div class="menu-icon" onclick="toggleSidebar()">☰</div>
+            <div class="logo" onclick="resetFeed()">SQVP.IO</div>
         </div>
         
         <div class="nav-center">
@@ -385,33 +472,40 @@
         </div>
     </nav>
 
+    <!-- MAIN APP CONTAINER -->
     <div class="app-container">
-        <aside>
-            <div class="sidebar-item active">🌐 Home Feed</div>
-            <div class="sidebar-item">🚀 Space Nodes</div>
-            <div class="sidebar-item">⚛️ Quantum Channels</div>
-            <div class="sidebar-item">📈 Live Telemetry</div>
+        
+        <!-- INTERACTIVE SIDEBAR -->
+        <aside id="main-sidebar">
+            <div class="sidebar-item active" onclick="filterMenu(this, 'all')">🌐 Home Feed</div>
+            <div class="sidebar-item" onclick="filterMenu(this, 'telemetry')">🚀 Space Nodes</div>
+            <div class="sidebar-item" onclick="filterMenu(this, 'quantum')">⚛️ Quantum Channels</div>
+            <div class="sidebar-item" onclick="filterMenu(this, 'astrophysics')">📈 Live Telemetry</div>
             <div class="sidebar-divider"></div>
             <div class="sidebar-section-title">Subscriptions</div>
-            <div class="sidebar-item">🪐 NASA Deep Space</div>
-            <div class="sidebar-item">🧬 Quantum Labs</div>
-            <div class="sidebar-item">🛰️ Orbital Edge</div>
+            <div class="sidebar-item" onclick="filterMenu(this, 'astrophysics')">🪐 NASA Deep Space</div>
+            <div class="sidebar-item" onclick="filterMenu(this, 'quantum')">🧬 Quantum Labs</div>
+            <div class="sidebar-item" onclick="filterMenu(this, 'telemetry')">🛰️ Orbital Edge</div>
             <div class="sidebar-divider"></div>
-            <div class="sidebar-item">⚙️ Core Settings</div>
+            <div class="sidebar-item" onclick="handleSettings()">⚙️ Core Settings</div>
         </aside>
 
+        <!-- MAIN FEED AND SIDE PLAYER SPLIT -->
         <div class="content-layout">
             <div class="main-feed">
+                
+                <!-- INTERACTIVE TAGS BAR -->
                 <div class="tags-bar">
-                    <div class="tag active">All Universe</div>
-                    <div class="tag">Quantum Cryptography</div>
-                    <div class="tag">LEO Satellites</div>
-                    <div class="tag">Astrophysics</div>
-                    <div class="tag">Laser Communications</div>
+                    <div class="tag active" onclick="filterTag(this, 'all')">All Universe</div>
+                    <div class="tag" onclick="filterTag(this, 'quantum')">Quantum Cryptography</div>
+                    <div class="tag" onclick="filterTag(this, 'telemetry')">LEO Satellites</div>
+                    <div class="tag" onclick="filterTag(this, 'astrophysics')">Astrophysics</div>
                 </div>
 
-                <div class="video-grid">
-                    <div class="video-card" onclick="loadVideo('Quantum Teleportation Protocols', 'Quantum Labs', '⚛️', 150.0, 65000)">
+                <!-- VIDEO SELECTION GRID -->
+                <div class="video-grid" id="video-grid-container">
+                    
+                    <div class="video-card" data-domain="quantum" onclick="loadVideo('Quantum Teleportation Protocols', 'Quantum Labs', '⚛️', 150.0, 65000)">
                         <div class="thumbnail">⚛️<span class="badge">QKD Protected</span></div>
                         <div class="video-info">
                             <div class="chan-avatar">QL</div>
@@ -422,7 +516,7 @@
                         </div>
                     </div>
 
-                    <div class="video-card" onclick="loadVideo('James Webb Deep Field Matrix', 'NASA Deep Space', '🪐', 450.0, 32000)">
+                    <div class="video-card" data-domain="astrophysics" onclick="loadVideo('James Webb Deep Field Matrix', 'NASA Deep Space', '🪐', 450.0, 32000)">
                         <div class="thumbnail" style="background: linear-gradient(135deg, #1b0c30, #05050c)">🪐<span class="badge">Laser Link</span></div>
                         <div class="video-info">
                             <div class="chan-avatar">NS</div>
@@ -433,7 +527,7 @@
                         </div>
                     </div>
 
-                    <div class="video-card" onclick="loadVideo('Shor Algorithm Satellite Optimization', 'Quantum Core', '💻', 180.0, 15000)">
+                    <div class="video-card" data-domain="quantum" onclick="loadVideo('Shor Algorithm Satellite Optimization', 'Quantum Core', '💻', 180.0, 15000)">
                         <div class="thumbnail">💻<span class="badge">QPU Native</span></div>
                         <div class="video-info">
                             <div class="chan-avatar">QC</div>
@@ -444,7 +538,7 @@
                         </div>
                     </div>
 
-                    <div class="video-card" onclick="loadVideo('6U CubeSat Micro-Thruster Run', 'Orbital Edge', '🛰️', 1200.0, 450)">
+                    <div class="video-card" data-domain="telemetry" onclick="loadVideo('6U CubeSat Micro-Thruster Run', 'Orbital Edge', '🛰️', 1200.0, 450)">
                         <div class="thumbnail" style="background: #07192b">🛰️<span class="badge">Orbital SSD</span></div>
                         <div class="video-info">
                             <div class="chan-avatar">OE</div>
@@ -454,13 +548,15 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
+            <!-- LIVE ORBITAL STREAM PLAYER PANEL -->
             <div class="player-side-panel">
                 <div class="player-header">
                     <h2>Target Space Stream</h2>
-                    <span style="font-size: 11px; opacity: 0.5;">Secure Downlink Terminal</span>
+                    <span style="font-size: 11px; opacity: 0.5;">Downlink Terminal</span>
                 </div>
                 
                 <div class="mock-screen" id="player-screen">
@@ -478,80 +574,27 @@
                     [SYSTEM] Ready to execute Grover's Search database parsing sequences...
                 </div>
             </div>
+
         </div>
     </div>
 
+    <!-- FULL INTERACTIVE FRONTEND LOGIC -->
     <script>
         const consoleOut = document.getElementById('console-output');
+        const sidebar = document.getElementById('main-sidebar');
 
+        // Toggle Sidebar Navigation (Hamburger menu action)
+        function toggleSidebar() {
+            sidebar.classList.toggle('collapsed');
+            appendLog(`[SYSTEM] Sidebar display mode toggled.`);
+        }
+
+        // Helper to push text lines into the simulated orbital terminal
+        function appendLog(text) {
+            consoleOut.innerHTML += `${text}<br>`;
+            consoleOut.scrollTop = consoleOut.scrollHeight;
+        }
+
+        // Google-Style Quantum Search Engine (Grover Search Trigger)
         function runGroverSearch() {
-            const query = document.getElementById('search-input').value;
-            if(!query) return;
-
-            consoleOut.innerHTML = `[GROVER ENGINE] Parsing query string: "${query}"...<br>`;
-            
-            setTimeout(() => {
-                consoleOut.innerHTML += `[QUANTUM] Deploying Grover's Oracle matrix. Initializing state superposition...<br>`;
-                consoleOut.scrollTop = consoleOut.scrollHeight;
-            }, 600);
-
-            setTimeout(() => {
-                consoleOut.innerHTML += `[ORBITAL] Quantum data index identified across LEO constellation vectors.<br>`;
-                consoleOut.scrollTop = consoleOut.scrollHeight;
-            }, 1400);
-
-            setTimeout(() => {
-                consoleOut.innerHTML += `[SUCCESS] 1 optimal metadata address found. Syncing downlink scheduler. Try clicking the videos!`;
-                consoleOut.scrollTop = consoleOut.scrollHeight;
-            }, 2200);
-        }
-
-        function loadVideo(title, channel, icon, fileSizeGb, views) {
-            document.getElementById('player-title').innerText = title;
-            document.getElementById('player-channel').innerText = `Channel: ${channel} • Secured via SQVP Link`;
-            document.getElementById('player-icon').innerText = icon;
-            document.getElementById('player-status-text').innerText = "Streaming Live Payload Data...";
-
-            // AI NLP classification inference mirror
-            let domain = "general";
-            let titleLower = title.toLowerCase();
-            if (titleLower.includes("quantum") || titleLower.includes("shor")) domain = "quantum";
-            else if (titleLower.includes("space") || titleLower.includes("webb")) domain = "astrophysics";
-            else if (titleLower.includes("thruster") || titleLower.includes("sat")) domain = "telemetry";
-
-            // AI Compression decision matrix mirror
-            let codec = "VVC-DeepSpace-Squeeze";
-            let ratio = "12:1";
-            let strategy = "ELIGIBLE_FOR_TERRESTRIAL_PURGE";
-
-            if (views > 50000 && (domain === "quantum" || domain === "astrophysics")) {
-                codec = "AV1-SpaceNative";
-                ratio = "1:1 (RAW)";
-                strategy = "PINNED_IN_ORBIT";
-            } else if (views > 10000) {
-                codec = "HEVC-Orbital-Optimized";
-                ratio = "4:1";
-                strategy = "STANDARD_CACHE";
-            }
-
-            consoleOut.innerHTML = `[AI-ONBOARD] Ingesting telemetry data lines for taxonomy classification...<br>`;
-            
-            setTimeout(() => {
-                consoleOut.innerHTML += `[AI INFERENCE] NLP classification matched domain: "${domain.toUpperCase()}"<br>`;
-                consoleOut.scrollTop = consoleOut.scrollHeight;
-            }, 600);
-
-            setTimeout(() => {
-                consoleOut.innerHTML += `[AI DECISION] Sizing: ${fileSizeGb} GB. Caching rule: [${strategy}]. Codec assigned: [${codec}] (Ratio: ${ratio})<br>`;
-                consoleOut.scrollTop = consoleOut.scrollHeight;
-            }, 1300);
-
-            setTimeout(() => {
-                consoleOut.innerHTML += `[SPACE LINK] BB84 QKD authorized. Streaming multicast payload directly from satellite SSD blocks.`;
-                consoleOut.scrollTop = consoleOut.scrollHeight;
-            }, 2000);
-        }
-    </script>
-</body>
-</html>
 
