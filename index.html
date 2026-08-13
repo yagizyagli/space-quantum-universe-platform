@@ -578,7 +578,7 @@
         </div>
     </div>
 
-    <!-- FULL INTERACTIVE FRONTEND LOGIC -->
+       <!-- FULL INTERACTIVE FRONTEND LOGIC -->
     <script>
         const consoleOut = document.getElementById('console-output');
         const sidebar = document.getElementById('main-sidebar');
@@ -586,7 +586,7 @@
         // Toggle Sidebar Navigation (Hamburger menu action)
         function toggleSidebar() {
             sidebar.classList.toggle('collapsed');
-            appendLog(`[SYSTEM] Sidebar display mode toggled.`);
+            appendLog('[SYSTEM] Sidebar display mode toggled.');
         }
 
         // Helper to push text lines into the simulated orbital terminal
@@ -597,4 +597,105 @@
 
         // Google-Style Quantum Search Engine (Grover Search Trigger)
         function runGroverSearch() {
+            const query = document.getElementById('search-input').value.trim().toLowerCase();
+            if(!query) {
+                appendLog('[ERROR] Search execution halted: Query pool cannot be null.');
+                return;
+            }
+
+            consoleOut.innerHTML = `[GROVER ENGINE] Ingesting database search index string: "${query}"...<br>`;
+            
+            setTimeout(() => appendLog('[QUANTUM] Injecting register qubits into equal superposition state matrices...'), 500);
+            setTimeout(() => appendLog('[ORBITAL] Scanning active LEO satellite constellation cluster hashes...'), 1200);
+
+            setTimeout(() => {
+                // Filter video elements dynamically on user UI based on search query
+                const cards = document.querySelectorAll('.video-card');
+                let foundCount = 0;
+                
+                cards.forEach(card => {
+                    const title = card.querySelector('h3').innerText.toLowerCase();
+                    if(title.includes(query)) {
+                        card.style.display = 'block';
+                        foundCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                appendLog(`[SUCCESS] Grover amplitude optimization complete. Found [${foundCount}] operational matching asset tokens.`);
+            }, 1900);
+        }
+
+        // Interactive Filtering Logic for Tags and Sidebar channels
+        function filterTag(element, domain) {
+            document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+            element.classList.add('active');
+            executeDomainFilter(domain);
+        }
+
+        function filterMenu(element, domain) {
+            document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+            executeDomainFilter(domain);
+        }
+
+        function executeDomainFilter(domain) {
+            const cards = document.querySelectorAll('.video-card');
+            appendLog(`[SYSTEM] Filtering data matrix by domain category scope: [${domain.toUpperCase()}]`);
+            
+            cards.forEach(card => {
+                if(domain === 'all' || card.getAttribute('data-domain') === domain) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function resetFeed() {
+            document.getElementById('search-input').value = '';
+            executeDomainFilter('all');
+            appendLog('[SYSTEM] Restoring original orbital home feed streams.');
+        }
+
+        function handleSettings() {
+            appendLog('[SECURITY] Cryptographic configuration locked. Superuser root access required.');
+        }
+
+        // AI-Driven Satellite Storage cache assignment simulation (Mirroring python core database logic)
+        function loadVideo(title, channel, icon, fileSizeGb, views) {
+            document.getElementById('player-title').innerText = title;
+            document.getElementById('player-channel').innerText = `Channel: ${channel} • Secured via SQVP Link`;
+            document.getElementById('player-icon').innerText = icon;
+            document.getElementById('player-status-text').innerText = 'Streaming Live Payload Data...';
+
+            let domain = 'general';
+            let titleLower = title.toLowerCase();
+            if (titleLower.includes('quantum') || titleLower.includes('shor')) domain = 'quantum';
+            else if (titleLower.includes('space') || titleLower.includes('webb')) domain = 'astrophysics';
+            else if (titleLower.includes('thruster') || titleLower.includes('sat')) domain = 'telemetry';
+
+            let codec = 'VVC-DeepSpace-Squeeze';
+            let ratio = '12:1';
+            let strategy = 'ELIGIBLE_FOR_TERRESTRIAL_PURGE';
+
+            if (views > 50000 && (domain === 'quantum' || domain === 'astrophysics')) {
+                codec = 'AV1-SpaceNative';
+                ratio = '1:1 (RAW)';
+                strategy = 'PINNED_IN_ORBIT';
+            } else if (views > 10000) {
+                codec = 'HEVC-Orbital-Optimized';
+                ratio = '4:1';
+                strategy = 'STANDARD_CACHE';
+            }
+
+            consoleOut.innerHTML = '[AI-ONBOARD] Ingesting telemetry data lines for classification taxonomy...<br>';
+            
+            setTimeout(() => appendLog(`[AI INFERENCE] NLP pattern categorization matched: "${domain.toUpperCase()}"`), 500);
+            setTimeout(() => appendLog(`[AI DECISION] Payload Size: ${fileSizeGb} GB | Allocation Guard Rule: [${strategy}] | Codec: [${codec}]`), 1100);
+            setTimeout(() => appendLog('[SPACE LINK] Optical cross-link active (BB84 QKD authorized). Decrypting payload stream from satellite SSD at 1.84ms latency.'), 1800);
+        }
+    </script>
+
 
