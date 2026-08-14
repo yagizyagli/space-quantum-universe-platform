@@ -36,7 +36,7 @@ space-quantum-universe-platform/
 ├── core-platform/             # Integrated software core
 │   ├── quantum-intelligence/  # Grover search engines, BB84 QKD layers, and noise filters
 │   ├── space-infrastructure/  # AI database storage, orbital mesh configuration, and downlink schedulers
-│   └── web-interface/         # Production backup files for the hybrid Google/YouTube UI
+│   
 ├── hardware-blueprints/       # Technical specs for 6U CubeSat payloads and laser transceivers
 ├── docs/                      # Architectural whitepapers and ITU/FCC regulatory compliance matrix
 ├── index.html                 # Production deployment file for live GitHub Pages rendering
